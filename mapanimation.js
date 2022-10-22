@@ -27,7 +27,7 @@ let map = new mapboxgl.Map({
 });
 
 // TODO: add a marker to the map at the first coordinates in the array busStops. The marker variable should be named "marker"
-var marker = new mapboxgl.Marker({ "color":  "red" })
+var marker = new mapboxgl.Marker({ "color": "red" })
   .setLngLat([-71.092761, 42.357575])
   .addTo(map);
 
@@ -92,6 +92,172 @@ map.on('load', () => {
     }
   );
 });
+
+
+
+/* Features for Buses Stops */
+const geojson = {
+  'type': 'FeatureCollection',
+  'features': [
+    {
+      'type': 'Feature',
+      'properties': {
+        'message': 'Bus 1',
+        'iconSize': [6, 6]
+      },
+      'geometry': {
+        'type': 'Point',
+        'coordinates': [-71.093729, 42.359244]
+      }
+    },
+    {
+      'type': 'Feature',
+      'properties': {
+        'message': 'Bus 2',
+        'iconSize': [5.5, 5.5]
+      },
+      'geometry': {
+        'type': 'Point',
+        'coordinates': [-71.094915, 42.360175]
+      }
+    },
+    {
+      'type': 'Feature',
+      'properties': {
+        'message': 'Bus 3',
+        'iconSize': [5.5, 5.5]
+      },
+      'geometry': {
+        'type': 'Point',
+        'coordinates': [-71.0958, 42.360698]
+      }
+    },
+    {
+      'type': 'Feature',
+      'properties': {
+        'message': 'Bus 4',
+        'iconSize': [5.5, 5.5]
+      },
+      'geometry': {
+        'type': 'Point',
+        'coordinates': [-71.099558, 42.362953]
+      }
+    },
+    {
+      'type': 'Feature',
+      'properties': {
+        'message': 'Bus 5',
+        'iconSize': [5.5, 5.5]
+      },
+      'geometry': {
+        'type': 'Point',
+        'coordinates': [-71.103476, 42.365248]
+      }
+    },
+    {
+      'type': 'Feature',
+      'properties': {
+        'message': 'Bus 6',
+        'iconSize': [5.5, 5.5]
+      },
+      'geometry': {
+        'type': 'Point',
+        'coordinates': [-71.106067, 42.366806]
+      }
+    },
+    {
+      'type': 'Feature',
+      'properties': {
+        'message': 'Bus 7',
+        'iconSize': [5.5, 5.5]
+      },
+      'geometry': {
+        'type': 'Point',
+        'coordinates': [-71.108717, 42.368355]
+      }
+    },
+    {
+      'type': 'Feature',
+      'properties': {
+        'message': 'Bus 8',
+        'iconSize': [5.5, 5.5]
+      },
+      'geometry': {
+        'type': 'Point',
+        'coordinates': [-71.110799, 42.369192]
+      }
+    },
+    {
+      'type': 'Feature',
+      'properties': {
+        'message': 'Bus 9',
+        'iconSize': [5.5, 5.5]
+      },
+      'geometry': {
+        'type': 'Point',
+        'coordinates': [-71.113095, 42.370218]
+      }
+    },
+    {
+      'type': 'Feature',
+      'properties': {
+        'message': 'Bus 10',
+        'iconSize': [5.5, 5.5]
+      },
+      'geometry': {
+        'type': 'Point',
+        'coordinates': [-71.115476, 42.372085]
+      }
+    },
+    {
+      'type': 'Feature',
+      'properties': {
+        'message': 'Bus 11',
+        'iconSize': [5.5, 5.5]
+      },
+      'geometry': {
+        'type': 'Point',
+        'coordinates': [-71.117585, 42.373016]
+      }
+    },
+    {
+      'type': 'Feature',
+      'properties': {
+        'message': 'Bus 12',
+        'iconSize': [5.5, 5.5]
+      },
+      'geometry': {
+        'type': 'Point',
+        'coordinates': [-71.118625, 42.374863]
+      }
+    }
+  ]
+};
+
+
+
+// Add markers to the map about the Buses
+for (const busMarker of geojson.features) {
+  // Create a DOM element for each marker.
+  const buses = document.createElement('div');
+  const width = busMarker.properties.iconSize[0];
+  const height = busMarker.properties.iconSize[1];
+  buses.className = 'busMarker';
+  buses.style.backgroundImage = `url(https://i.postimg.cc/KjcTwdZR/bus3.png)`;
+  buses.style.width = `${width}em`;
+  buses.style.height = `${height}em`;
+  /*buses.style.backgroundSize = '100%';*/
+   
+  buses.addEventListener('click', () => {
+  window.alert(busMarker.properties.message);
+  });
+   
+  // Add markers to the map.
+  new mapboxgl.Marker(buses)
+  .setLngLat(busMarker.geometry.coordinates)
+  .addTo(map);
+  }
+
 
 // counter here represents the index of the current bus stop
 let counter = 0;
