@@ -4,6 +4,6 @@
 <p>This project shows a map, displaying the bus stops between MIT and Harvard University. This website uses HTML, CSS, and Bootstrap. As well, it uses a Mapbox API to be able to get the map and its data.</p>
 
 #### Preview:
-<img src="https://i.postimg.cc/66rwcCP8/Map-Animation.gif" alt="GIF Map Animation">
+<img src="https://i.postimg.cc/XqFS57GC/Map-Animation.gif" alt="GIF Map Animation">
 
 
